@@ -3,6 +3,7 @@ importScripts('imageManips.js');
 this.onmessage = function(e) {
   var imageData = e.data.imageData;
   var type = e.data.type;
+  var manipulate = getFunc(type);
 
   try {
     length = imageData.data.length / 4;
@@ -11,7 +12,7 @@ this.onmessage = function(e) {
       g = imageData.data[i * 4 + 1];
       b = imageData.data[i * 4 + 2];
       a = imageData.data[i * 4 + 3];
-      pixel = manipulate(type, r, g, b, a);
+      pixel = manipulate(r, g, b, a);
       imageData.data[i * 4 + 0] = pixel[0];
       imageData.data[i * 4 + 1] = pixel[1];
       imageData.data[i * 4 + 2] = pixel[2];
